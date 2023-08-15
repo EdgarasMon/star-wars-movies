@@ -1,7 +1,7 @@
 import "../App.css";
 import { useState } from "react";
 import TabNavigation from "./TabNavigation";
-import FilmCard from "./Films/FilmCard";
+import FilmsCards from "./Films/FilmsCards";
 import About from "./About/About";
 
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
   return (
     <>
       <TabNavigation selectedPage={setPageCB} />
-      {selectedPage === "Films" && <FilmCard />}
+      {selectedPage === "Films" && <FilmsCards />}
       {selectedPage === "About" && <About />}
     </>
   );

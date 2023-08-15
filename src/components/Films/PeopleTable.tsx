@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import { styled } from "@mui/material/styles";
@@ -9,6 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import IPeople from "../../interfaces/IPeople";
 import { Alert, LinearProgress, Snackbar, Typography } from "@mui/material";
+import usePeopleData from "../../hooks/usePeopleData";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -30,25 +29,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const PeopleTable = (props: { episodePeople: string[] }) => {
-  const { episodePeople } = props;
-  const [people, setPeople] = useState<IPeople[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    const requests = episodePeople.map((apiRequest) => axios.get(apiRequest));
-    Promise.all(requests)
-      .then((res) => {
-        const peopleData = res.map((res) => res.data);
-        setPeople(peopleData);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching people items:", error);
-        setError(true);
-      });
-  }, [episodePeople]);
+  const { people, loading, error } = usePeopleData(props);
 
   return (
     <>

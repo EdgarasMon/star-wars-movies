@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, SyntheticEvent } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
@@ -16,7 +16,7 @@ const TabNavigation = (props: {
     fontSize: "30px",
   };
 
-  const changePage = (event: React.SyntheticEvent, newValue: string) => {
+  const changePage = (event: SyntheticEvent, newValue: string) => {
     setValue(newValue);
     selectedPage(newValue);
     setLabelTextColor("primary");
