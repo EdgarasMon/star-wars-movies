@@ -1,10 +1,10 @@
 import "../App.css";
 import { useState } from "react";
 import TabNavigation from "./TabNavigation";
-import Films from "./Films";
-import About from "./About";
+import FilmCard from "./Films/FilmCard";
+import About from "./About/About";
 
-function App() {
+const App = () => {
   const [selectedPage, setSelectedPage] = useState("Films");
 
   const setPageCB = (selectedPage: string) => {
@@ -14,10 +14,10 @@ function App() {
   return (
     <>
       <TabNavigation selectedPage={setPageCB} />
-      {selectedPage === "Films" && <Films />}
+      {selectedPage === "Films" && <FilmCard />}
       {selectedPage === "About" && <About />}
     </>
   );
-}
+};
 
 export default App;

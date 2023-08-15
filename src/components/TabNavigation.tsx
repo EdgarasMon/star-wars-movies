@@ -3,15 +3,18 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
-export default function TabNavigation(props: {
+const TabNavigation = (props: {
   selectedPage: (selectedPage: string) => void;
-}) {
+}) => {
   const { selectedPage } = props;
   const [value, setValue] = useState("Films");
   const [labelTextColor, setLabelTextColor] = useState("secondary");
-  // const [indicatorColor, setIndicatorColor] = useState("secondary");
 
-  // pataisyti problema kad pirmam renderiui butu about label pilkas
+  const tabStyle = {
+    color: labelTextColor === "secondary" ? "primary.main" : "secondary",
+    fontFamily: "fantasy",
+    fontSize: "30px",
+  };
 
   const changePage = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -33,27 +36,11 @@ export default function TabNavigation(props: {
         textColor={value === "Films" ? "primary" : "secondary"}
         indicatorColor={value === "Films" ? "primary" : "secondary"}
       >
-        <Tab
-          value='Films'
-          label='Films'
-          sx={{
-            color:
-              labelTextColor === "secondary" ? "primary.main" : "secondary",
-            fontFamily: "fantasy",
-            fontSize: "30px",
-          }}
-        />
-        <Tab
-          value='About'
-          label='About'
-          sx={{
-            color:
-              labelTextColor === "secondary" ? "primary.main" : "secondary",
-            fontFamily: "fantasy",
-            fontSize: "30px",
-          }}
-        />
+        <Tab value='Films' label='Films' sx={tabStyle} />
+        <Tab value='About' label='About' sx={tabStyle} />
       </Tabs>
     </Box>
   );
-}
+};
+
+export default TabNavigation;

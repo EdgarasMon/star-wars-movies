@@ -6,10 +6,11 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Alert, Button, LinearProgress, Paper, Snackbar } from "@mui/material";
-import IFilms from "../interfaces/IFilms";
+import IFilms from "../../interfaces/IFilms";
 import PeopleTable from "./PeopleTable";
+import paperInCard from "../../styles/paperInCard";
 
-export default function FilmCard() {
+const FilmCard = () => {
   const [films, setFilms] = useState([]);
   const [episodePeople, setEpisodePeople] = useState<string[]>([]);
   const [error, setError] = useState(false);
@@ -18,7 +19,7 @@ export default function FilmCard() {
     const filmsAPI = "https://swapi.dev/api/films/";
     axios
       .get(filmsAPI)
-      .then((res: any) => {
+      .then((res) => {
         setFilms(res.data.results);
       })
       .catch((error) => {
@@ -105,20 +106,7 @@ export default function FilmCard() {
                     },
                   }}
                 >
-                  <Paper
-                    elevation={2}
-                    sx={{
-                      display: "flex",
-                      flexWrap: "wrap",
-                      alignContent: "center",
-                      justifyContent: "center",
-                      "& > :not(style)": {
-                        m: 1,
-                        width: 80,
-                        height: 80,
-                      },
-                    }}
-                  >
+                  <Paper elevation={2} sx={paperInCard}>
                     Episode: {el.episode_id}
                   </Paper>
                 </Box>
@@ -131,10 +119,12 @@ export default function FilmCard() {
       {error && (
         <Snackbar autoHideDuration={5000}>
           <Alert severity='error' sx={{ width: "100%" }}>
-            Failed to fetch from api try again
+            Failed to fetch data from api try again
           </Alert>
         </Snackbar>
       )}
     </>
   );
-}
+};
+
+export default FilmCard;

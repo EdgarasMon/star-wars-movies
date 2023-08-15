@@ -1,11 +1,11 @@
-import "../styles/about.css";
+import "../../styles/about.css";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import VolumeDownIcon from "@mui/icons-material/VolumeDown";
 import IconButton from "@mui/material/IconButton";
 
-export default function About() {
+const About = () => {
   const [disableMusic, setDisableMusic] = useState(true);
   const turnOffSound = () => {
     setDisableMusic(false);
@@ -55,4 +55,6 @@ export default function About() {
       </Box>
     </>
   );
-}
+};
+
+export default About;

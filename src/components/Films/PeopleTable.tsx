@@ -7,7 +7,7 @@ import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import IPeople from "../interfaces/IPeople";
+import IPeople from "../../interfaces/IPeople";
 import { Alert, LinearProgress, Snackbar, Typography } from "@mui/material";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -16,7 +16,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
+    fontSize: 16,
   },
 }));
 
@@ -29,9 +29,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export default function PeopleTable(props: { episodePeople: string[] }) {
+const PeopleTable = (props: { episodePeople: string[] }) => {
   const { episodePeople } = props;
-  const [people, setPeople] = useState([]);
+  const [people, setPeople] = useState<IPeople[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -39,8 +39,8 @@ export default function PeopleTable(props: { episodePeople: string[] }) {
     setLoading(true);
     const requests = episodePeople.map((apiRequest) => axios.get(apiRequest));
     Promise.all(requests)
-      .then((res: any) => {
-        const peopleData = res.map((res: any) => res.data);
+      .then((res) => {
+        const peopleData = res.map((res) => res.data);
         setPeople(peopleData);
         setLoading(false);
       })
@@ -85,16 +85,16 @@ export default function PeopleTable(props: { episodePeople: string[] }) {
                   <StyledTableRow key={row.name}>
                     <StyledTableCell sx={{ color: "white" }}>
                       {`${index + 1}. `}
-                      {row.name}
+                      {row.name !== "unknown" ? row.name : "-"}
                     </StyledTableCell>
                     <StyledTableCell sx={{ color: "white" }}>
-                      {row.birth_year}
+                      {row.birth_year !== "unknown" ? row.birth_year : "-"}
                     </StyledTableCell>
                     <StyledTableCell sx={{ color: "white" }}>
-                      {row.gender}
+                      {row.gender !== "unknown" ? row.gender : "-"}
                     </StyledTableCell>
                     <StyledTableCell sx={{ color: "white" }}>
-                      {row.mass}
+                      {row.mass !== "unknown" ? row.mass : "-"}
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}
@@ -106,10 +106,12 @@ export default function PeopleTable(props: { episodePeople: string[] }) {
       {error && (
         <Snackbar autoHideDuration={5000}>
           <Alert severity='error' sx={{ width: "100%" }}>
-            Failed to fetch from api try again
+            Failed to fetch data from api try again
           </Alert>
         </Snackbar>
       )}
     </>
   );
-}
+};
+
+export default PeopleTable;
