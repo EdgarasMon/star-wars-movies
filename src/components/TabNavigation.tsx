@@ -1,45 +1,28 @@
-import { useState, SyntheticEvent } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Box from "@mui/material/Box";
+import { Link, useLocation } from "react-router-dom";
 
-const TabNavigation = (props: {
-  selectedPage: (selectedPage: string) => void;
-}) => {
-  const { selectedPage } = props;
-  const [value, setValue] = useState("Films");
-  const [labelTextColor, setLabelTextColor] = useState("secondary");
+const TabNavigation = () => {
+  const location = useLocation();
 
   const tabStyle = {
-    color: labelTextColor === "secondary" ? "primary.main" : "secondary",
+    color: "primary.main",
+
     fontFamily: "fantasy",
     fontSize: "30px",
   };
 
-  const changePage = (event: SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-    selectedPage(newValue);
-    setLabelTextColor("primary");
-  };
-
   return (
-    <Box
-      sx={{
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
-      <Tabs
-        value={value}
-        onChange={changePage}
-        textColor={value === "Films" ? "primary" : "secondary"}
-        indicatorColor={value === "Films" ? "primary" : "secondary"}
-      >
-        <Tab value='Films' label='Films' sx={tabStyle} />
-        <Tab value='About' label='About' sx={tabStyle} />
-      </Tabs>
-    </Box>
+    <Tabs centered value={location.pathname}>
+      <Tab value='Films' label='Films' sx={tabStyle} component={Link} to='/' />
+      <Tab
+        value='About'
+        label='About'
+        sx={tabStyle}
+        component={Link}
+        to='/about'
+      />
+    </Tabs>
   );
 };
 

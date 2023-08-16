@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import IPeople from "../../interfaces/IPeople";
 import { Alert, LinearProgress, Snackbar, Typography } from "@mui/material";
 import usePeopleData from "../../hooks/usePeopleData";
+import { useSelector } from "react-redux";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -29,13 +30,21 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const PeopleTable = (props: { episodePeople: string[] }) => {
-  const { people, loading, error } = usePeopleData(props);
+  let { people, loading, error } = usePeopleData(props);
+  const people_ = useSelector((state: any) => state.people);
+  const peopleDataFromRedux = people_.data;
+  if (peopleDataFromRedux.length) {
+    people = peopleDataFromRedux;
+  }
+
+  console.log("///////////filmsDataFromRedux////////////", peopleDataFromRedux);
+  console.log("///////////films////////////", people);
 
   return (
     <>
       {loading ? (
         <>
-          <h3 color='purple'>Fetching People data </h3>
+          <h3 style={{ color: "#9500ae" }}>Fetching People data </h3>
           <LinearProgress color='secondary' sx={{ m: 1 }} />
         </>
       ) : (

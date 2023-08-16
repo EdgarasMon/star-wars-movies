@@ -1,22 +1,18 @@
 import "../App.css";
-import { useState } from "react";
 import TabNavigation from "./TabNavigation";
 import FilmsCards from "./Films/FilmsCards";
 import About from "./About/About";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 const App = () => {
-  const [selectedPage, setSelectedPage] = useState("Films");
-
-  const setPageCB = (selectedPage: string) => {
-    setSelectedPage(selectedPage);
-  };
-
   return (
-    <>
-      <TabNavigation selectedPage={setPageCB} />
-      {selectedPage === "Films" && <FilmsCards />}
-      {selectedPage === "About" && <About />}
-    </>
+    <Router>
+      <TabNavigation />
+      <Routes>
+        <Route path='/' element={<FilmsCards />} />
+        <Route path='/about' element={<About />} />
+      </Routes>
+    </Router>
   );
 };
 

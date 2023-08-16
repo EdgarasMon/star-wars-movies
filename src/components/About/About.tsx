@@ -19,9 +19,9 @@ const About = () => {
       <Box>
         <IconButton onClick={turnOffSound}>
           {disableMusic ? (
-            <VolumeDownIcon fontSize='large' />
+            <VolumeDownIcon color='primary' fontSize='large' />
           ) : (
-            <VolumeOffIcon fontSize='large' />
+            <VolumeOffIcon color='primary' fontSize='large' />
           )}
           {disableMusic && (
             <Box className='audio-controls'>
@@ -36,18 +36,18 @@ const About = () => {
         </IconButton>
       </Box>
       <Box className='crawl'>
-        <h1 className='title h1'>Episode IV</h1>
-        <h2 className='title h2'>A New Hope</h2>
-        <p>
+        <h1 className='h1'>Episode IV</h1>
+        <h2 className='h2'>A New Hope</h2>
+        <p className='p'>
           It is a period of civil war. Rebel spaceships, striking from a hidden
           base, have won their first victory against the evil Galactic Empire.
         </p>
-        <p>
+        <p className='p'>
           During the battle, Rebel spies managed to steal secret plans to the
           Empire's ultimate weapon, the DEATH STAR, and space station with
           enough power to destroy an entire planet.
         </p>
-        <p>
+        <p className='p'>
           Pursued by the Empire's sinister agents, Princess Leia races home
           aboard her starship, custodian of the stolen plans that can save her
           people and restore freedom to the galaxy ....

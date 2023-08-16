@@ -8,15 +8,21 @@ import IFilms from "../../interfaces/IFilms";
 import PeopleTable from "./PeopleTable";
 import paperInCard from "../../styles/paperInCard";
 import useFilmsData from "../../hooks/useFilmsData";
+import { useSelector } from "react-redux";
 
 const FilmsCards = () => {
-  const { films, episodePeople, error, showPeople } = useFilmsData();
+  let { films, episodePeople, error, showPeople } = useFilmsData();
+  const films_ = useSelector((state: any) => state.films);
+  const filmsDataFromRedux = films_.data;
+  if (filmsDataFromRedux.length) {
+    films = filmsDataFromRedux;
+  }
 
   return (
     <>
       {!films.length ? (
         <>
-          <h3 color='blue'>Fetching Films data</h3>
+          <h3 style={{ color: "#2196f3" }}>Fetching Films data</h3>
           <LinearProgress
             sx={{
               mt: 2,
