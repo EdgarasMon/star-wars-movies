@@ -14,3 +14,8 @@ Technologies used:
 - material: 5.14.4
 - icons-material: 5.14.3
 - jest: 27.5.1
+
+Screenshots and video:
+![image](https://github.com/EdgarasMon/star-wars-movies/assets/88674998/8f9f9efb-036d-49de-ab3f-cc7944fda5c5)
+![image](https://github.com/EdgarasMon/star-wars-movies/assets/88674998/794ee47b-8f7b-47d5-ab64-87dcf223baea)
+![ezgif com-video-to-gif](https://github.com/EdgarasMon/star-wars-movies/assets/88674998/ef05bfad-a0a4-4166-b228-130818b93458)
