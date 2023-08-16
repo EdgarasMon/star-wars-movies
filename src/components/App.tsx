@@ -1,7 +1,7 @@
 import "../App.css";
 import TabNavigation from "./TabNavigation";
 import FilmsCards from "./Films/FilmsCards";
-import About from "./About/About";
+import About from "./About/index";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 const App = () => {

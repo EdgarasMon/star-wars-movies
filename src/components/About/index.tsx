@@ -1,4 +1,5 @@
 import "../../styles/about.css";
+import React from "react";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
@@ -17,7 +18,7 @@ const About = () => {
   return (
     <>
       <Box>
-        <IconButton onClick={turnOffSound}>
+        <IconButton onClick={turnOffSound} data-testid='volume-button'>
           {disableMusic ? (
             <VolumeDownIcon color='primary' fontSize='large' />
           ) : (

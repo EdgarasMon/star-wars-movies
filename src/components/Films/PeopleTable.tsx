@@ -37,9 +37,6 @@ const PeopleTable = (props: { episodePeople: string[] }) => {
     people = peopleDataFromRedux;
   }
 
-  console.log("///////////filmsDataFromRedux////////////", peopleDataFromRedux);
-  console.log("///////////films////////////", people);
-
   return (
     <>
       {loading ? (
