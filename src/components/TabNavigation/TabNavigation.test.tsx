@@ -16,8 +16,5 @@ describe("TabNavigation", () => {
 
     expect(filmsTab).toBeDefined();
     expect(aboutTab).toBeDefined();
-
-    // expect(filmsTab).toHaveAttribute("to", "/");
-    // expect(aboutTab).toHaveAttribute("to", "/about");
   });
 });
